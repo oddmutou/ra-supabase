@@ -16,7 +16,7 @@ Edit `.env` and populate it with your Supabase connection variables:
 
 ```env
 VITE_SUPABASE_URL=<SUBSTITUTE_SUPABASE_URL>
-VITE_SUPABASE_API_KEY=<SUBSTITUTE_SUPABASE_ANON_KEY>
+VITE_SUPABASE_API_KEY=<SUBSTITUTE_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY>
 ```
 
 Make the data in your database readable by authenticated users by adding an RLS policy:
@@ -271,7 +271,7 @@ const dataProvider = supabaseDataProvider(config);
 
 ### Row-Level Security
 
-As users authenticate through supabase, you can leverage [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security). Users identity will be propagated through the dataProvider if you provided the public API (anon) key. Keep in mind that passing the `service_role` key will bypass Row Level Security. This is not recommended.
+As users authenticate through supabase, you can leverage [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security). Users identity will be propagated through the dataProvider if you provided the public API (anon) key or a publishable key (`sb_publishable_*`). Keep in mind that passing the `service_role` key will bypass Row Level Security. This is not recommended.
 
 ## Guessers
 
@@ -380,7 +380,7 @@ import { supabaseClient } from './supabase';
 
 export const dataProvider = supabaseDataProvider({
     instanceUrl: 'YOUR_SUPABASE_URL',
-    apiKey: 'YOUR_SUPABASE_ANON_KEY',
+    apiKey: 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY',
     supabaseClient,
     primaryKeys: new Map([
         ['some_table', ['custom_id']],

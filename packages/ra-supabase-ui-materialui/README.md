@@ -16,7 +16,7 @@ npm install ra-supabase-ui-materialui
 // in supabase.js
 import { createClient } from '@supabase/supabase-js';
 
-export const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+export const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY');
 
 // in dataProvider.js
 import { supabaseDataProvider } from 'ra-supabase-core';
@@ -24,7 +24,7 @@ import { supabaseClient } from './supabase';
 
 export const dataProvider = supabaseDataProvider({
     instanceUrl: 'YOUR_SUPABASE_URL',
-    apiKey: 'YOUR_SUPABASE_ANON_KEY',
+    apiKey: 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY',
     supabaseClient
 });
 

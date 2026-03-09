@@ -16,7 +16,7 @@ npm install ra-supabase-core
 // in supabase.js
 import { createClient } from '@supabase/supabase-js';
 
-export const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+export const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY');
 
 // in dataProvider.js
 import { supabaseDataProvider } from 'ra-supabase-core';
@@ -24,7 +24,7 @@ import { supabase } from './supabase';
 
 export const dataProvider = supabaseDataProvider({
     instanceUrl: 'YOUR_SUPABASE_URL',
-    apiKey: 'YOUR_SUPABASE_ANON_KEY',
+    apiKey: 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY',
     supabase
 });
 
@@ -91,7 +91,7 @@ See the [PostgREST documentation](https://postgrest.org/en/stable/api.html#opera
 
 #### RLS
 
-As users authenticate through supabase, you can leverage [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security). Users identity will be propagated through the dataProvider if you provided the public API (anon) key. Keep in mind that passing the `service_role` key will bypass Row Level Security. This is not recommended.
+As users authenticate through supabase, you can leverage [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security). Users identity will be propagated through the dataProvider if you provided the public API (anon) key or a publishable key (`sb_publishable_*`). Keep in mind that passing the `service_role` key will bypass Row Level Security. This is not recommended.
 
 #### Customizing the dataProvider
 
@@ -104,7 +104,7 @@ import { supabaseClient } from './supabase';
 
 export const dataProvider = supabaseDataProvider({
     instanceUrl: 'YOUR_SUPABASE_URL',
-    apiKey: 'YOUR_SUPABASE_ANON_KEY',
+    apiKey: 'YOUR_SUPABASE_ANON_KEY_OR_PUBLISHABLE_KEY',
     supabaseClient,
     primaryKeys: new Map([
         ['some_table', ['custom_id']],
