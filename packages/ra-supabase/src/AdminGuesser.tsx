@@ -20,7 +20,14 @@ import { createClient } from '@supabase/supabase-js';
 import { defaultI18nProvider } from './defaultI18nProvider';
 
 export const AdminGuesser = (
-    props: AdminProps & { instanceUrl: string; apiKey: string }
+    props: AdminProps & {
+        instanceUrl: string;
+        /**
+         * The API key of the Supabase instance. Accepts both the legacy anonymous
+         * JWT key and the newer publishable key (`sb_publishable_*`).
+         */
+        apiKey: string;
+    }
 ) => {
     const {
         instanceUrl,
